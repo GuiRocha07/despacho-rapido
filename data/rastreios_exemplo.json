@@ -1,0 +1,9 @@
+[
+  {"nf": 9001, "cliente": "Mercado Estrela do Sul", "cidade": "Chapecó/SC", "transportadora": "Rápido Sul Cargas", "emissao": "2026-11-10", "previsao": "2026-11-14", "entregue_em": null},
+  {"nf": 9002, "cliente": "Empório Sabor da Terra", "cidade": "Londrina/PR", "transportadora": "Rápido Sul Cargas", "emissao": "2026-11-13", "previsao": "2026-11-19", "entregue_em": null},
+  {"nf": 9003, "cliente": "Quitanda da Praça", "cidade": "Campinas/SP", "transportadora": "Brasil Norte Log", "emissao": "2026-11-14", "previsao": "2026-11-24", "entregue_em": null},
+  {"nf": 9004, "cliente": "Mercado Família Unida", "cidade": "Itajaí/SC", "transportadora": "Litoral Express", "emissao": "2026-11-05", "previsao": "2026-11-07", "entregue_em": "2026-11-07"},
+  {"nf": 9005, "cliente": "Doceria Açúcar Mascavo", "cidade": "Pelotas/RS", "transportadora": "Rápido Sul Cargas", "emissao": "2026-11-03", "previsao": "2026-11-08", "entregue_em": "2026-11-11"},
+  {"nf": 9006, "cliente": "Loja Grão & Cia", "cidade": "Vitória/ES", "transportadora": "Brasil Norte Log", "emissao": "2026-11-18", "previsao": null, "entregue_em": null},
+  {"nf": 9007, "cliente": "Padaria Trigo Fino", "cidade": "Ponta Grossa/PR", "transportadora": "Litoral Express", "emissao": "2026-11-15", "previsao": "2026-11-20", "entregue_em": null}
+]

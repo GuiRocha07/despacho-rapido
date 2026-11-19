@@ -1,0 +1,20 @@
+{
+  "empresa": "Vila Verde Alimentos (fictícia)",
+  "remetente_cep": "89000-000",
+  "atualizar_segundos": 120,
+  "data_referencia": "2026-11-19",
+  "modelo_mensagem": "Olá! Cotação de frete, pedido {numero}:\nOrigem: CEP {cep_origem}\nDestino: CEP {cep_destino} - {cidade}\nDestinatário: {documento}\nValor da NF: {valor}\nPeso: {peso} kg\nVolumes: {volumes}\nCubagem: {cubagem} m³\nObrigado!",
+  "cidades_rota_propria": ["Joinville", "Jaraguá do Sul", "Blumenau"],
+  "caixas": [
+    {"nome": "Caixa P", "apelidos": ["CX P", "PEQUENA"], "comprimento_cm": 30, "largura_cm": 20, "altura_cm": 20},
+    {"nome": "Caixa M", "apelidos": ["CX M", "MEDIA"], "comprimento_cm": 40, "largura_cm": 30, "altura_cm": 30},
+    {"nome": "Caixa G", "apelidos": ["CX G", "GRANDE"], "comprimento_cm": 60, "largura_cm": 40, "altura_cm": 40},
+    {"nome": "Fardo", "apelidos": ["FD"], "comprimento_cm": 50, "largura_cm": 35, "altura_cm": 25}
+  ],
+  "transportadoras": [
+    {"id": "rapidosul", "nome": "Rápido Sul Cargas", "estados": ["SC", "PR", "RS"], "cidades": [], "canal": "whatsapp", "telefone": "5500000000001", "ativa": true},
+    {"id": "litoral", "nome": "Litoral Express", "estados": ["SC"], "cidades": ["Curitiba"], "canal": "whatsapp", "telefone": "5500000000002", "ativa": true},
+    {"id": "brasilnorte", "nome": "Brasil Norte Log", "estados": ["SP", "RJ", "MG", "ES"], "cidades": [], "canal": "email", "email": "cotacao@brasilnorte.exemplo", "ativa": true},
+    {"id": "serrana", "nome": "Serrana Transportes", "estados": ["RS"], "cidades": [], "canal": "whatsapp", "telefone": "5500000000004", "ativa": false}
+  ]
+}
