@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block titulo %}Fila de faturamento · Despacho Rápido{% endblock %}
+{% block conteudo %}
+<section class="cabecalho">
+  <div>
+    <h1>Fila de faturamento</h1>
+    <p class="suave">{{ empresa }} · {{ cards|length }} de {{ total }} pedidos</p>
+  </div>
+  <div class="atualizacao" data-segundos="{{ atualizar }}">
+    <span>Última atualização: <b id="ultima"></b></span>
+    <span>Próxima em: <b id="contagem"></b></span>
+    <button class="botao" onclick="location.reload()">Atualizar agora</button>
+  </div>
+</section>
+
+<form class="filtros" method="get">
+  <input name="busca" value="{{ filtros.busca }}" placeholder="Buscar pedido, cliente ou cidade">
+  <select name="uf">
+    <option value="">Todos os estados</option>
+    {% for uf in ufs %}<option {{ 'selected' if filtros.uf == uf }}>{{ uf }}</option>{% endfor %}
+  </select>
+  <label><input type="checkbox" name="liberados" value="1" {{ 'checked' if filtros.so_liberados }}> Só liberados</label>
+  <label><input type="checkbox" name="retira" value="1" {{ 'checked' if filtros.mostrar_retira }}> Mostrar "cliente retira"</label>
+  <button class="botao secundario">Filtrar</button>
+</form>
+
+<section class="grade">
+  {% for c in cards %}{% set p = c.pedido %}
+  <article class="card">
+    <header>
+      <h2>Pedido {{ p.numero }}</h2>
+      {% if p.retira %}<span class="selo cinza">Retira</span>
+      {% elif p.liberado %}<span class="selo verde">Liberado</span>
+      {% else %}<span class="selo amarelo">Aguardando liberação</span>{% endif %}
+    </header>
+    <p class="cliente">{{ p.cliente }}</p>
+    <dl>
+      <dt>Destino</dt><dd>{{ p.cidade }}/{{ p.uf }} · CEP {{ p.cep or '—' }}</dd>
+      <dt>Valor NF</dt><dd>{{ p.valor|moeda }}</dd>
+      <dt>Peso</dt><dd>{{ '%.1f'|format(p.peso_kg) }} kg</dd>
+      <dt>Volumes</dt><dd>{{ p.volumes }} ({{ p.embalagem or 'sem embalagem' }})</dd>
+      <dt>Cubagem</dt><dd>{{ ('%.3f'|format(c.m3)) ~ ' m³' if c.m3 else '—' }}</dd>
+    </dl>
+
+    {% for a in c.avisos %}<p class="alerta">⚠️ {{ a }}</p>{% endfor %}
+
+    {% if c.rota_propria %}
+      <p class="info">🚐 Cidade atendida pela rota própria: não precisa cotar.</p>
+    {% else %}
+      <details>
+        <summary>Mensagem de cotação</summary>
+        <pre class="mensagem">{{ c.mensagem }}</pre>
+        <button class="botao secundario copiar" data-texto="{{ c.mensagem }}">Copiar mensagem</button>
+      </details>
+      <div class="transportadoras">
+        {% for t in c.transportadoras %}
+          {% if t.link %}<a class="botao whats" href="{{ t.link }}" target="_blank" rel="noopener">WhatsApp · {{ t.nome }}</a>
+          {% else %}<span class="botao secundario">{{ t.nome }} · {{ t.email }}</span>{% endif %}
+        {% else %}
+          <p class="alerta">Nenhuma transportadora cadastrada atende {{ p.uf }}.</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </article>
+  {% else %}
+  <p>Nenhum pedido com esses filtros.</p>
+  {% endfor %}
+</section>
+{% endblock %}

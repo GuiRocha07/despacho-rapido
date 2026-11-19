@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block titulo %}Rastreio · Despacho Rápido{% endblock %}
+{% block conteudo %}
+<section class="cabecalho">
+  <div>
+    <h1>Acompanhamento de entregas</h1>
+    <p class="suave">Situação calculada em {{ hoje.strftime('%d/%m/%Y') }}, pela previsão da transportadora</p>
+  </div>
+</section>
+
+<section class="resumo">
+  {% for codigo, (rotulo, _) in situacoes.items() %}
+  <div class="contador {{ codigo }}"><b>{{ resumo[codigo] }}</b><span>{{ rotulo }}</span></div>
+  {% endfor %}
+</section>
+
+<table class="tabela">
+  <thead><tr><th>NF</th><th>Cliente</th><th>Destino</th><th>Transportadora</th><th>Previsão</th><th>Situação</th></tr></thead>
+  <tbody>
+    {% for n in notas %}
+    <tr>
+      <td>{{ n.nf }}</td>
+      <td>{{ n.cliente }}</td>
+      <td>{{ n.cidade }}</td>
+      <td>{{ n.transportadora }}</td>
+      <td>{{ n.previsao or '—' }}</td>
+      <td><span class="selo {{ n.situacao }}">{{ n.rotulo }}</span> <small>{{ n.texto }}</small></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
